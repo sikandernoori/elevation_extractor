@@ -28,13 +28,13 @@ Future<void> main() async {
     var heightHalf = (yMin + yMax) / 2;
 
     if (width >= height * 2) {
-      print("vertically");
+      // print("vertically");
       result
           .add(Rectangle(Coordinate(xMin, yMin), Coordinate(widthHalf, yMax)));
       result
           .add(Rectangle(Coordinate(widthHalf, yMin), Coordinate(xMax, yMax)));
     } else {
-      print("Horizontally");
+      // print("Horizontally");
       result
           .add(Rectangle(Coordinate(xMin, yMin), Coordinate(xMax, heightHalf)));
       result
@@ -134,8 +134,6 @@ Future<void> main() async {
   for (int i = 0; i < cartesianRectangles.length; i++) {
     try {
       await processRectangle(cartesianRectangles[i]);
-      String geoJson = listToGeoJson(processedRect);
-      print(geoJson);
 
       // List<Map<String, dynamic>> jsonList =
       //     processedRect.map((rect) => rect.toJson()).toList();
@@ -146,4 +144,18 @@ Future<void> main() async {
       print('Exception: $e');
     }
   }
+  String geoJson = listToGeoJson(processedRect);
+  var file = File(
+      './lib/result/GeoJson_${DateTime.now().millisecondsSinceEpoch}.json');
+  file.writeAsStringSync(geoJson);
+
+  List<Map<String, dynamic>> jsonList =
+      processedRect.map((rect) => rect.toJson()).toList();
+
+  String jsonString = json.encode(jsonList);
+
+  file =
+      File('./lib/result/Rect_${DateTime.now().millisecondsSinceEpoch}.json');
+  file.writeAsStringSync(jsonString);
+  print("Done");
 }
