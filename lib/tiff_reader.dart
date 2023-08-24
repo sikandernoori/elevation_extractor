@@ -1,20 +1,35 @@
 import 'dart:io';
 import 'package:image/image.dart';
+import 'package:image/image.dart' as img;
+
+import 'models/utils.dart';
 
 void main() {
+  double latitude = 42.073850;
+  double longitude = 13.029003;
   print("Started at ${DateTime.now()}");
   Stopwatch sw = Stopwatch()..start();
   var tiffFile = File(
       '/Users/skandar/Desktop/random-forest/elevation_project/GTOPO_30/GTOPO30.tif');
   var bytes = tiffFile.readAsBytesSync();
-  var tiffDecoder = TiffDecoder();
-  var image = tiffDecoder.decode(bytes);
+  var image = TiffDecoder().decode(bytes);
+
+  ///
+  /// To crop image.
+  ///
+  // var minX = Utils.longitudeToColumn(-155);
+  // var minY = Utils.latitudeToRow(72.5);
+  // var maxX = Utils.longitudeToColumn(-145);
+  // var maxY = Utils.latitudeToRow(67.5);
+  // var iImage = copyCrop(image!, x: minX, y: minY, width: 5000, height: 7000);
+  // var tiff = encodeTiff(iImage);
+  // File('image.tiff').writeAsBytesSync(tiff);
 
   print('Tiff load time ${sw.elapsedMilliseconds} ms');
   sw.reset();
 
-  var col = Utils.longitudeToColumn(11.099049);
-  var row = Utils.latitudeToRow(47.044112);
+  var col = Utils.longitudeToColumn(longitude);
+  var row = Utils.latitudeToRow(latitude);
   var elevation = image?.data?.getPixel(col, row).r.toDouble();
 
   print(
@@ -23,28 +38,9 @@ void main() {
   print("Ended at ${DateTime.now()}");
 }
 
-class Utils {
-  static int longitudeToColumn(double longitude) {
-    // 360 long = 43200 columns
-    // 1 long = 43200/360
-    // x long = (43200/360) * x
-    // 43200 columns = 360
-    // 1 column = 360/43200
-    // 1 column = 0.0083333 long
 
-    const double columnsPerDegree = 43200 / 360;
-    return (columnsPerDegree * (longitude + 180)).toInt();
-  }
-
-  static int latitudeToRow(double latitude) {
-    // 180 lat = 21600 columns
-    // 1 lat = 21600/180
-    // x lat = (21600/180) * x
-    // 21600 column = 180 lat
-    // 1 column = 180/21600
-    // 1 column = 0.0083333 lat
-
-    const double rowsPerDegree = 21600 / 180;
-    return (rowsPerDegree * (90 - latitude)).toInt();
-  }
-}
+/// 0: [-155,67.5]
+/// 1: [-145,67.5]
+/// 2: [-145,72.5]
+/// 3: [-155,72.5]
+/// 4: [-155,67.5]

@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  clock:
+    dependency: transitive
+    description:
+      name: clock
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   collection:
     dependency: transitive
     description:
@@ -71,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  dart_jts:
+    dependency: transitive
+    description:
+      name: dart_jts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3+2"
   file:
     dependency: transitive
     description:
@@ -85,6 +99,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.0"
+  geoimage:
+    dependency: "direct main"
+    description:
+      name: geoimage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
+  geojson_vi:
+    dependency: "direct main"
+    description:
+      name: geojson_vi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   glob:
     dependency: transitive
     description:
@@ -113,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.17"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.0"
   io:
     dependency: transitive
     description:

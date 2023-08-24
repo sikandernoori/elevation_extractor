@@ -11,16 +11,28 @@
         "program": "lib/main.dart"
       },
       {
-        "name": "Elevation extractor",
+        "name": "Elevation extractor GDAL",
         "request": "launch",
         "type": "dart",
-        "program": "lib/elevation_extractor.dart"
+        "program": "lib/elevation_from_gdal.dart"
       },
       {
         "name": "Tiff reader",
         "request": "launch",
         "type": "dart",
         "program": "lib/tiff_reader.dart"
+      },
+      {
+        "name": "Tiffs Dataset collector",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/tiffs_data_set_collector.dart"
+      },
+      {
+        "name": "Tiffs Chunked reader",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/tiff_reader_chunked.dart"
       }
     ]
 }

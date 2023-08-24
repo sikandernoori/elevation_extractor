@@ -89,9 +89,20 @@ Future<void> main() async {
       DEM_PATH,
       '/vsistdout/',
     ];
+    final gdalCommand1 = [
+      '-of',
+      'GTiff',
+      '-projwin',
+      rectangle.min.lon.toString(),
+      rectangle.max.lat.toString(),
+      rectangle.max.lon.toString(),
+      rectangle.min.lat.toString(), //  <xmin> <ymax> <xmax> <ymin>
+      DEM_PATH,
+      'sample.tif',
+    ];
 
     try {
-      final processResult = await Process.run('gdal_translate', gdalCommand);
+      final processResult = await Process.run('gdal_translate', gdalCommand1);
       if (processResult.exitCode == 0) {
         final outputLines = LineSplitter.split(processResult.stdout.toString());
         final elevations = <double>[];
@@ -129,8 +140,8 @@ Future<void> main() async {
     //         rectangle.max.lon, rectangle.min.lat)
     //     .round();
 
-    var area = getArea(rectangle.min, rectangle.max);
-    print('{ "Time": "${sw.elapsedMilliseconds}ms", "Area": "$area"}');
+    // var area = getArea(rectangle.min, rectangle.max);
+    // print('{ "Time": "${sw.elapsedMilliseconds}ms", "Area": "$area"}');
     return result;
   }
 
@@ -160,7 +171,7 @@ Future<void> main() async {
   }
 
   List<Rectangle> cartesianRectangles = [
-    Rectangle(Coordinate(0, 0), Coordinate(8, 6)),
+    Rectangle(Coordinate(-155, 67.5), Coordinate(-145, 72.5)),
     // Rectangle(Coordinate(0, 0), Coordinate(180, 90)),
     // Rectangle(Coordinate(0, 0), Coordinate(180, -90)),
     // Rectangle(Coordinate(0, 0), Coordinate(-180, -90)),
