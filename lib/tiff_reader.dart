@@ -5,8 +5,8 @@ import 'package:image/image.dart' as img;
 import 'models/utils.dart';
 
 void main() {
-  double latitude = 42.073850;
-  double longitude = 13.029003;
+  double latitude = 35.881866;
+  double longitude = 76.513240;
   print("Started at ${DateTime.now()}");
   Stopwatch sw = Stopwatch()..start();
   var tiffFile = File(
@@ -31,6 +31,10 @@ void main() {
   var col = Utils.longitudeToColumn(longitude);
   var row = Utils.latitudeToRow(latitude);
   var elevation = image?.data?.getPixel(col, row).r.toDouble();
+
+//   print("""
+// elavation
+// """);
 
   print(
       'Elevation: $elevation | Time: ${sw.elapsedMicroseconds} micro seconds');

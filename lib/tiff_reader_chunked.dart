@@ -1,8 +1,8 @@
 import 'models/utils.dart';
 
 void main() {
-  double lat = 35.881866;
-  double lon = 76.513240;
+  double lat = 66.92;
+  double lon = -62.2;
   print("Started at ${DateTime.now()}");
   Stopwatch sw = Stopwatch()..start();
 

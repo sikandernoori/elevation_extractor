@@ -11,8 +11,9 @@ class Utils {
     // 1 column = 360/43200
     // 1 column = 0.0083333 long
 
-    const double columnsPerDegree = 43200 / 360;
-    return (columnsPerDegree * (longitude + 180)).toInt();
+    const double columnsPerDegree = 43200 / 360.000019;
+    var res = (columnsPerDegree * (longitude + (360.000019 / 2)));
+    return res.round();
   }
 
   static int latitudeToRow(double latitude) {
@@ -23,13 +24,14 @@ class Utils {
     // 1 column = 180/21600
     // 1 column = 0.0083333 lat
 
-    const double rowsPerDegree = 21600 / 180;
-    return (rowsPerDegree * (90 - latitude)).toInt();
+    const double rowsPerDegree = 21600 / 180.00001;
+    var res = (rowsPerDegree * ((180.00001 / 2) - latitude));
+    return res.round();
   }
 
   static Image getImageFromIndex(int index) {
     var tiffFile = File(
-        '/Users/skandar/Desktop/random-forest/elevation_project/elevation_extractor/lib/data_set_compressed/$index.tiff');
+        '/Users/skandar/Desktop/random-forest/elevation_project/elevation_extractor/lib/4x2/$index.tiff');
     return TiffDecoder().decode(tiffFile.readAsBytesSync())!;
   }
 
